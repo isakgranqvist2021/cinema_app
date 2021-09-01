@@ -30,6 +30,7 @@ const schema = buildSchema(`
 	type Movie {
 		id: Int
 		title: String
+		description: String
 	}
 `);
 
