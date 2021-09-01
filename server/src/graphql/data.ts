@@ -1,17 +1,17 @@
 /** @format */
 
-interface User {
+export interface User {
 	id: number;
 	username: string;
 }
 
-interface Movie {
+export interface Movie {
 	id: number;
 	title: string;
 	description: string;
 }
 
-const users = [
+export const users: User[] = [
 	{
 		id: 1,
 		username: 'Mark',
@@ -34,7 +34,7 @@ const users = [
 	},
 ];
 
-const movies: Movie[] = [
+export const movies: Movie[] = [
 	{
 		id: 1,
 		title: 'No Time To Die',
@@ -60,19 +60,3 @@ const movies: Movie[] = [
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a typ",
 	},
 ];
-
-const user = {
-	one: (params: any): User => users.find((m: User) => m.id === params.id),
-	all: (): User[] => users,
-	admin: (): boolean => false,
-};
-
-const movie = {
-	one: (params: any): Movie => movies.find((m: Movie) => m.id === params.id),
-	all: (): Movie[] => movies,
-};
-
-export default {
-	user,
-	movie,
-};
