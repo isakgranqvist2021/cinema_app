@@ -1,0 +1,11 @@
+/** @format */
+
+body {
+	overflow: hidden;
+	background-image: url('https://images.pexels.com/photos/7234219/pexels-photo-7234219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+	height: 100vh;
+}
+
+#AppComponent {
+	overflow: auto;
+}
