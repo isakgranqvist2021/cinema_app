@@ -10,11 +10,11 @@ export const usernameRegex =
 	/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
 
 /* 
-    two uppercase letters
-    one special case letter
-    two digits
-    three lowercase letters
-    minimum 8 characters long
+    Passwords will contain at least 1 upper case letter
+    Passwords will contain at least 1 lower case letter
+    Passwords will contain at least 1 number or special character
+    Passwords will contain at least 8 characters in length
+    Password maximum length should not be arbitrarily limited
 */
 export const passwordRegex =
-	/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/;
+	/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;

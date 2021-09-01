@@ -2,25 +2,25 @@
 
 import mongoose from 'mongoose';
 
-interface MongooseObject {
+interface _O {
 	_id: mongoose.Schema.Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 	__v: number;
 }
 
-export interface User extends MongooseObject {
+export interface User extends _O {
 	username: string;
 	password: string;
 	admin: boolean;
 }
 
-export interface Movie extends MongooseObject {
+export interface Movie extends _O {
 	title: string;
 	description: string;
 }
 
-export interface Booking extends MongooseObject {
+export interface Booking extends _O {
 	email: string;
 	phone: string;
 	movie: mongoose.Schema.Types.ObjectId;

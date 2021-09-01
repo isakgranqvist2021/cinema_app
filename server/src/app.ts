@@ -6,10 +6,12 @@ import cors from 'cors';
 import log from './middlewares/log';
 import graphql from './graphql/graphql';
 import auth from './middlewares/auth';
-import admin from './api/admin';
-import api from './api';
+import admin from './admin';
+import database from './utils/database';
+import api from '.';
 
 dotenv.config();
+database.connect();
 const app: express.Express = express();
 
 app.use(cors());
