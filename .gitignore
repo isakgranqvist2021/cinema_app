@@ -6,6 +6,8 @@
 /server/node_modules
 /server/dist
 /server/.env
+/server/cert.pem
+/server/key.pem
 
 # misc
 /.vscode
