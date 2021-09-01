@@ -1,38 +1,10 @@
 /** @format */
 
-export interface User {
-	id: number;
-	username: string;
-}
-
 export interface Movie {
 	id: number;
 	title: string;
 	description: string;
 }
-
-export const users: User[] = [
-	{
-		id: 1,
-		username: 'Mark',
-	},
-	{
-		id: 2,
-		username: 'Peter',
-	},
-	{
-		id: 3,
-		username: 'John',
-	},
-	{
-		id: 4,
-		username: 'Andrew',
-	},
-	{
-		id: 5,
-		username: 'Jenna',
-	},
-];
 
 export const movies: Movie[] = [
 	{

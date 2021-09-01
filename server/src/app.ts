@@ -6,13 +6,14 @@ import cors from 'cors';
 import log from './middlewares/log';
 import graphql from './graphql/graphql';
 import auth from './middlewares/auth';
-import admin from './admin';
+import admin from './api/admin';
 import api from './api';
 
 dotenv.config();
 const app: express.Express = express();
 
 app.use(cors());
+app.use(express.json());
 app.use('*', log);
 app.use('/graphql', graphql);
 app.use('/api/users', api);

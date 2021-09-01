@@ -1,10 +1,8 @@
 /** @format */
 
-import { users, User, movies, Movie } from './data';
+import { movies, Movie } from './data';
 
 const user = {
-	one: (params: any): User => users.find((m: User) => m.id === params.id),
-	all: (): User[] => users,
 	admin: (): boolean => false,
 };
 

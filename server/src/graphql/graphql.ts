@@ -8,14 +8,8 @@ const schema = buildSchema(`
     type Query {
 		movie(id: Int!): Movie
 		movies: [Movie]
-		user(id: Int!): User
 		admin: Boolean
     }
-
-	type User {
-		id: Int
-		username: String
-	}
 
 	type Movie {
 		id: Int
@@ -25,8 +19,6 @@ const schema = buildSchema(`
 `);
 
 const root = {
-	user: queries.user.one,
-	users: queries.user.all,
 	movie: queries.movie.one,
 	movies: queries.movie.all,
 	admin: queries.user.admin,
