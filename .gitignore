@@ -9,5 +9,5 @@
 /server/cert.pem
 /server/key.pem
 
-# misc
+# misc 
 /.vscode

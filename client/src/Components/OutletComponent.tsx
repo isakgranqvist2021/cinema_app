@@ -56,7 +56,7 @@ const routes: Route[] = [
 		component: HomeComponent,
 	},
 	{
-		path: '/create-booking',
+		path: '/create-booking/:title/:today',
 		component: BookingComponent,
 	},
 	{

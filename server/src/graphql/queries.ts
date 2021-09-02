@@ -1,17 +1,17 @@
 /** @format */
 
-import { movies, Movie } from './data';
-
-const user = {
-	admin: (): boolean => false,
-};
+import { findMany, findOne } from '../models/movie';
 
 const movie = {
-	one: (params: any): Movie => movies.find((m: Movie) => m.id === params.id),
-	all: (): Movie[] => movies,
+	one: async (params: any) => {
+		return await findOne({ _id: params.id });
+	},
+	all: async () => {
+		console.log('find all');
+		return await findMany({});
+	},
 };
 
 export default {
-	user,
 	movie,
 };

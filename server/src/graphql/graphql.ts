@@ -8,20 +8,23 @@ const schema = buildSchema(`
     type Query {
 		movie(id: Int!): Movie
 		movies: [Movie]
-		admin: Boolean
     }
 
 	type Movie {
-		id: Int
+		_id: String
 		title: String
 		description: String
+		createdAt: String,
+		updatedAt: String
+		thumbnail: String
+		header: String
+		trailer: String
 	}
 `);
 
 const root = {
 	movie: queries.movie.one,
 	movies: queries.movie.all,
-	admin: queries.user.admin,
 };
 
 export default graphqlHTTP({

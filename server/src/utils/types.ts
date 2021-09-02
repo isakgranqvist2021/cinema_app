@@ -18,6 +18,9 @@ export interface User extends _O {
 export interface Movie extends _O {
 	title: string;
 	description: string;
+	thumbnail: string;
+	header: string;
+	trailer: string;
 }
 
 export interface Booking extends _O {

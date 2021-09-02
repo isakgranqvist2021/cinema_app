@@ -8,7 +8,8 @@ export default function HomeComponent(props: any): JSX.Element {
 	const query = gql`
 		query {
 			movies {
-				id
+				_id
+				thumbnail
 				title
 				description
 			}
@@ -26,11 +27,11 @@ export default function HomeComponent(props: any): JSX.Element {
 			<div
 				style={{
 					display: 'grid',
-					gridTemplateColumns: '1fr 1fr',
+					gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 					gap: 50,
 				}}>
 				{data.movies.map((v: any, i: number) => (
-					<MovieComponent key={i} id='1' {...v} />
+					<MovieComponent key={i} {...v} />
 				))}
 			</div>
 		</div>
