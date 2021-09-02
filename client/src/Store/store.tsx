@@ -11,7 +11,11 @@ interface Action {
 	payload: AuthState;
 }
 
-function authStore(state: AuthState = { loggedIn: false }, action: Action) {
+const initialState: AuthState = {
+	loggedIn: false,
+};
+
+function authStore(state: AuthState = initialState, action: Action) {
 	switch (action.type) {
 		case 'set':
 			return (state = action.payload);

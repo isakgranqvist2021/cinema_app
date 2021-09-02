@@ -9,7 +9,7 @@ import {
 import { serverAddr } from './http';
 
 const client = new ApolloClient({
-	uri: serverAddr,
+	uri: serverAddr + '/graphql',
 	cache: new InMemoryCache(),
 });
 

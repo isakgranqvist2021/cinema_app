@@ -14,15 +14,23 @@ const loggedIn = async (req: Request, res: Response, next: NextFunction) => {
 			data: null,
 		});
 
-	let decoded: Decoded = verifyToken(req.headers['authorization']);
-	const user = await findOne(decoded.username);
-	if (user.admin) return next();
+	try {
+		let decoded: Decoded = verifyToken(req.headers['authorization']);
+		const user = await findOne(decoded.username);
+		if (user.admin) return next();
 
-	return res.json({
-		message: 'only authorized users can perform that action',
-		success: false,
-		data: null,
-	});
+		return res.json({
+			message: 'only authorized users can perform that action',
+			success: false,
+			data: null,
+		});
+	} catch (err) {
+		return res.json({
+			message: 'only authorized users can perform that action',
+			success: false,
+			data: null,
+		});
+	}
 };
 
 export default loggedIn;

@@ -2,41 +2,42 @@
 
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { client, gql } from 'Utils/graphql';
-
+import { GET } from 'Utils/http';
 import authReducer from 'Store/store';
 
-import LoadingComponent from 'Pages/LoadingComponent';
-import ErrorComponent from 'Pages/ErrorComponent';
-import HomeComponent from 'Pages/HomeComponent';
-import BookingComponent from 'Pages/BookingComponent';
-import PublishComponent from 'Pages/PublishComponent';
+import LoadingComponent from 'Pages/Index/LoadingComponent';
+import ErrorComponent from 'Pages/Index/ErrorComponent';
+import HomeComponent from 'Pages/Index/HomeComponent';
+import BookingComponent from 'Pages/Index/BookingComponent';
+
+import PublishComponent from 'Pages/Admin/PublishComponent';
+import LoginComponent from 'Pages/Admin/LoginComponent';
 
 const requireLogin = async (to: any, from: any, next: any) => {
-	const response = await client.query({
-		query: gql`
-			query admin {
-				admin
-			}
-		`,
-	});
+	const response = await GET('/api/admin');
 
 	authReducer.dispatch({
 		type: 'set',
 		payload: {
-			loggedIn: response.data.admin,
+			loggedIn: response.success,
 		},
 	});
 
-	if (to.meta.auth) return response.data.admin ? next() : next.redirect('/');
+	// auth does not matter for the requested route
+	if (to.meta.auth === undefined) return next();
 
-	return next();
+	// auth must be present on the requested route
+	if (to.meta.auth) return response.success ? next() : next.redirect('/');
+
+	// auth must not be present on the requested route
+	if (!to.meta.auth)
+		return !response.success ? next() : next.redirect('/admin/publish');
 };
 
 interface Route {
 	path: string;
 	component: React.FunctionComponent;
-	auth: boolean;
+	auth?: boolean;
 }
 
 const routes: Route[] = [
@@ -46,19 +47,21 @@ const routes: Route[] = [
 		auth: true,
 	},
 	{
-		path: '/',
-		component: HomeComponent,
+		path: '/admin/login',
+		component: LoginComponent,
 		auth: false,
 	},
 	{
-		path: '/book',
+		path: '/',
+		component: HomeComponent,
+	},
+	{
+		path: '/create-booking',
 		component: BookingComponent,
-		auth: false,
 	},
 	{
 		path: '*',
 		component: ErrorComponent,
-		auth: false,
 	},
 ];
 
