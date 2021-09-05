@@ -2,9 +2,9 @@
 
 import React from 'react';
 import ContainerComponent from 'Components/ContainerComponent';
-import DatesComponent from './DatesComponent';
-import HeaderComponent from './HeaderComponent';
-import PublishComponent from './PublishComponent';
+import DatesComponent from '../../Components/DatesComponent';
+import HeaderComponent from '../../Components/HeaderComponent';
+import PublishComponent from '../../Components/PublishComponent';
 
 const components = [PublishComponent, DatesComponent];
 

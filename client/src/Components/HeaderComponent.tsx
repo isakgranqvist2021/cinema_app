@@ -1,6 +1,6 @@
 /** @format */
 
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function HeaderComponent(props: any): JSX.Element {
 	const history = useHistory();
@@ -26,8 +26,14 @@ export default function HeaderComponent(props: any): JSX.Element {
 	return (
 		<div className='uk-margin-bottom'>
 			<div>
-				{links.map((link: any) => (
-					<a className={link.className} onClick={link.action}>
+				{links.map((link: any, i: number) => (
+					<a
+						key={i}
+						className={[
+							link.className,
+							props.active === i ? 'uk-text-secondary' : '',
+						].join(' ')}
+						onClick={link.action}>
 						{link.text}
 					</a>
 				))}

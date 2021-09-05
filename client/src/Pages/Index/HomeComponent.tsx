@@ -4,17 +4,18 @@ import ContainerComponent from 'Components/ContainerComponent';
 import MovieComponent from 'Components/MovieComponent';
 import { gql, useQuery } from '@apollo/client';
 
-export default function HomeComponent(props: any): JSX.Element {
-	const query = gql`
-		query {
-			movies {
-				_id
-				thumbnail
-				title
-				description
-			}
+const query = gql`
+	query {
+		movies {
+			_id
+			thumbnail
+			title
+			description
 		}
-	`;
+	}
+`;
+
+export default function HomeComponent(props: any): JSX.Element {
 	const { loading, error, data } = useQuery(query);
 
 	if (loading) return <p>Loading...</p>;
