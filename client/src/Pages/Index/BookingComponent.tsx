@@ -1,11 +1,42 @@
 /** @format */
 
+import ContainerComponent from 'Components/ContainerComponent';
+import { gql, useQuery } from '@apollo/client';
+
 export default function BookingComponent(props: any): JSX.Element {
-	console.log(props.location.state);
+	const query = gql`
+		query {
+			movie(id: "${props.location.state}") {
+				_id
+				createdAt
+				updatedAt
+				title
+				description
+				thumbnail
+				header
+				trailer
+			}
+		}
+	`;
+
+	const { loading, error, data } = useQuery(query);
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error...</p>;
+
+	const embeddCode = data.movie.trailer.split('?v=')[1];
 
 	return (
-		<div>
-			<p>Book!</p>
-		</div>
+		<ContainerComponent>
+			<iframe
+				className='uk-width-100'
+				height='720'
+				src={'https://www.youtube.com/embed/' + embeddCode}
+				title='YouTube video player'
+				frameBorder='0'
+				allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+				allowFullScreen></iframe>
+			<h1>{data.movie.title}</h1>
+			<p>{data.movie.description}</p>
+		</ContainerComponent>
 	);
 }

@@ -26,7 +26,7 @@ const LoginComponent = (props: any): JSX.Element => {
 		window.alert(response.message);
 		if (response.success) {
 			localStorage.setItem('token', response.data);
-			history.push('/admin/publish', null);
+			history.push('/admin/dashboard', null);
 		}
 	};
 

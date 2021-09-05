@@ -10,8 +10,8 @@ import ErrorComponent from 'Pages/Index/ErrorComponent';
 import HomeComponent from 'Pages/Index/HomeComponent';
 import BookingComponent from 'Pages/Index/BookingComponent';
 
-import PublishComponent from 'Pages/Admin/PublishComponent';
 import LoginComponent from 'Pages/Admin/LoginComponent';
+import DashboardComponent from 'Pages/Admin/DashboardComponent';
 
 const requireLogin = async (to: any, from: any, next: any) => {
 	const response = await GET('/api/admin');
@@ -42,8 +42,8 @@ interface Route {
 
 const routes: Route[] = [
 	{
-		path: '/admin/publish',
-		component: PublishComponent,
+		path: '/admin/dashboard',
+		component: DashboardComponent,
 		auth: true,
 	},
 	{
@@ -56,7 +56,7 @@ const routes: Route[] = [
 		component: HomeComponent,
 	},
 	{
-		path: '/create-booking/:title/:today',
+		path: '/:title/:today',
 		component: BookingComponent,
 	},
 	{

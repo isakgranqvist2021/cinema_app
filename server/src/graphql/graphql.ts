@@ -6,12 +6,12 @@ import { graphqlHTTP } from 'express-graphql';
 
 const schema = buildSchema(`
     type Query {
-		movie(id: Int!): Movie
+		movie(id: String!): Movie
 		movies: [Movie]
     }
 
 	type Movie {
-		_id: String
+		_id: String 
 		title: String
 		description: String
 		createdAt: String,
