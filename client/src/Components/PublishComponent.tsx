@@ -12,17 +12,6 @@ interface Movie {
 	minAge: string;
 }
 
-const movie: Movie = {
-	thumbnail:
-		'https://upload.wikimedia.org/wikipedia/en/9/91/Shershaah_film_poster.jpg',
-	header: 'https://enewsdelta.com/wp-content/uploads/2021/07/shershah-movie.jpg',
-	trailer: 'https://www.youtube.com/watch?v=agIJTnpfFGA',
-	title: 'Shershaah',
-	description:
-		'This is a story of a PVC awardee brave Indian soldier - Capt. Vikram Batra, who shot to fame and became a household name during the Kargil War in 1999. His indomitable spirit and his unflinching courage in chasing the Pakistani soldiers out of Indian territory contributed immensely in India finally winning the Kargil War in 1999.',
-	minAge: '18',
-};
-
 const initialState: Movie = {
 	thumbnail: '',
 	header: '',
@@ -66,7 +55,7 @@ export default function PublishComponent(props: any): JSX.Element {
 					type='text'
 					className='uk-input'
 					id='thumbnail'
-					placeholder='https://upload.wikimedia.org/wikipedia/en/9/91/Shershaah_film_poster.jpg'
+					placeholder='Shershaah_film_poster.jpg'
 					value={formData.thumbnail}
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 						setField('thumbnail', e.target.value)
@@ -83,7 +72,7 @@ export default function PublishComponent(props: any): JSX.Element {
 					type='text'
 					className='uk-input'
 					id='header'
-					placeholder='https://enewsdelta.com/wp-content/uploads/2021/07/shershah-movie.jpg'
+					placeholder='shershah-movie.jpg'
 					value={formData.header}
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 						setField('header', e.target.value)
@@ -150,19 +139,13 @@ export default function PublishComponent(props: any): JSX.Element {
 				<textarea
 					className='uk-textarea'
 					id='description'
-					placeholder='This is a story of a PVC awardee brave Indian soldier - Capt. Vikram Batra, who shot to fame and became a household name during the Kargil War in 1999. His indomitable spirit and his unflinching courage in chasing the Pakistani soldiers out of Indian territory contributed immensely in India finally winning the Kargil War in 1999.'
 					value={formData.description}
 					onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
 						setField('description', e.target.value)
 					}></textarea>
 			</section>
 
-			<div className='uk-flex uk-flex-between'>
-				<button
-					className='uk-button uk-button-default'
-					onClick={() => setFormData({ ...movie })}>
-					Populate Form
-				</button>
+			<div className='uk-flex uk-flex-right'>
 				<button
 					className='uk-button uk-button-primary'
 					onClick={submit}>

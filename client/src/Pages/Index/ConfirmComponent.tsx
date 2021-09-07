@@ -189,6 +189,11 @@ export default function ConfirmComponent(props: any): JSX.Element {
 					<div
 						key={s.seat}
 						onClick={() => selectSeat(s)}
+						title={
+							s.available
+								? `Seat ${s.seat + 1}`
+								: 'Already booked'
+						}
 						className={[
 							classes.gridItem,
 							s.available ? 'available' : 'booked',

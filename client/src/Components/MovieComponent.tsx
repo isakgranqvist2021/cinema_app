@@ -1,9 +1,12 @@
 /** @format */
 
 import { useHistory } from 'react-router';
+import { movieStyles as useStyles } from 'Utils/hooks';
 
 export default function MovieComponent(props: any): JSX.Element {
 	const history = useHistory();
+	const classes = useStyles();
+
 	let t = props.title;
 
 	['-', ' ', '?', ':', '.', '!'].forEach((symbol: string) => {
@@ -36,12 +39,22 @@ export default function MovieComponent(props: any): JSX.Element {
 					{props.description.substring(0, 200)}
 					{props.description.length > 200 ? '...' : ''}
 				</p>
-				<a
-					href={href}
-					className='uk-button uk-button-primary'
-					onClick={(e: any) => navigate(e)}>
-					Read More
-				</a>
+
+				<div className={classes.cardActions}>
+					<a
+						href={href}
+						className='uk-button uk-button-primary'
+						onClick={(e: any) => navigate(e)}>
+						Read More
+					</a>
+					{props.minAge > 0 && (
+						<div
+							className={classes.minAgeBadge}
+							title={`Minimum age to see this movie`}>
+							{props.minAge}+
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

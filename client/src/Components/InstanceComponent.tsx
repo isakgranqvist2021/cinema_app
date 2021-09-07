@@ -20,7 +20,7 @@ interface Instance {
 }
 
 const initialState: Instance = {
-	movie: '',
+	movie: 'Please pick a title',
 	date: new Date().toString(),
 	seats: '0',
 };
@@ -66,6 +66,7 @@ export default function InstanceComponent(props: any): JSX.Element {
 					onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 						setField('movie', e.target.value)
 					}>
+					<option>-</option>
 					{data.movies.map((movie: any, i: number) => (
 						<option value={movie._id} key={i} id='movie'>
 							{movie.title}

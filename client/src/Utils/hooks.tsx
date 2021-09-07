@@ -89,11 +89,11 @@ export const confirmStyles = makeStyles(() => {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			cursor: 'pointer',
 			border: '2px solid transparent',
 			fontWeight: 900,
 			backgroundColor: '#fff',
 			fontSize: 30,
+			cursor: 'not-allowed',
 			'&.booked': {
 				borderColor: '#943f2c',
 				textDecoration: 'line-through',
@@ -102,6 +102,7 @@ export const confirmStyles = makeStyles(() => {
 			},
 			'&.available': {
 				borderColor: '#d1d1d1',
+				cursor: 'pointer',
 			},
 			'&.selected': {
 				borderColor: '#18a126',
@@ -120,5 +121,21 @@ export const confirmStyles = makeStyles(() => {
 export const viewBookingStyles = makeStyles(() => {
 	return {
 		pill: pill,
+	};
+});
+
+export const movieStyles = makeStyles(() => {
+	return {
+		cardActions: {
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+		},
+		minAgeBadge: {
+			backgroundColor: '#b31b1b',
+			padding: 10,
+			borderRadius: '50%',
+			color: '#fff',
+		},
 	};
 });

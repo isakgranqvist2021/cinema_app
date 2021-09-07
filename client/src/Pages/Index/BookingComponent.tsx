@@ -78,16 +78,24 @@ export default function BookingComponent(props: any): JSX.Element {
 						</tr>
 					</thead>
 					<tbody>
-						{data.instances.map((inst: any, i: number) => (
-							<tr
-								key={i}
-								className={classes.row}
-								onClick={(e: any) => navigate(e, inst)}>
-								<td>{i + 1}</td>
-								<td>{new Date(inst.date).toLocaleString()}</td>
-								<td>{inst.seats - inst.bookings.length}</td>
-							</tr>
-						))}
+						{[...data.instances]
+							.sort(
+								(a: any, b: any) =>
+									new Date(a.date).valueOf() -
+									new Date(b.date).valueOf()
+							)
+							.map((inst: any, i: number) => (
+								<tr
+									key={i}
+									className={classes.row}
+									onClick={(e: any) => navigate(e, inst)}>
+									<td>{i + 1}</td>
+									<td>
+										{new Date(inst.date).toLocaleString()}
+									</td>
+									<td>{inst.seats - inst.bookings.length}</td>
+								</tr>
+							))}
 					</tbody>
 				</table>
 			</div>
