@@ -12,6 +12,7 @@ const movieSchema = new mongoose.Schema({
 	thumbnail: { type: String, required: true },
 	header: { type: String, required: true },
 	trailer: { type: String, required: true },
+	minAge: { type: Number, default: null },
 });
 
 const MovieModel = mongoose.model('Movie', movieSchema);

@@ -21,11 +21,20 @@ export interface Movie extends _O {
 	thumbnail: string;
 	header: string;
 	trailer: string;
+	minAge: Number;
 }
 
 export interface Booking extends _O {
 	email: string;
 	phone: string;
-	movie: mongoose.Schema.Types.ObjectId;
+	instance: mongoose.Schema.Types.ObjectId;
 	seat: number;
+}
+
+export interface Instance extends _O {
+	movie: mongoose.Schema.Types.ObjectId;
+	date: Date;
+	seats: Number;
+	bookings: Number[];
+	minAge: Number;
 }

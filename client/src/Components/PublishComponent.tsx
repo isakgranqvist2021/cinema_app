@@ -9,6 +9,7 @@ interface Movie {
 	trailer: string;
 	title: string;
 	description: string;
+	minAge: string;
 }
 
 const movie: Movie = {
@@ -19,16 +20,20 @@ const movie: Movie = {
 	title: 'Shershaah',
 	description:
 		'This is a story of a PVC awardee brave Indian soldier - Capt. Vikram Batra, who shot to fame and became a household name during the Kargil War in 1999. His indomitable spirit and his unflinching courage in chasing the Pakistani soldiers out of Indian territory contributed immensely in India finally winning the Kargil War in 1999.',
+	minAge: '18',
+};
+
+const initialState: Movie = {
+	thumbnail: '',
+	header: '',
+	trailer: '',
+	title: '',
+	description: '',
+	minAge: '0',
 };
 
 export default function PublishComponent(props: any): JSX.Element {
-	const [formData, setFormData] = React.useState<Movie>({
-		thumbnail: '',
-		header: '',
-		trailer: '',
-		title: '',
-		description: '',
-	});
+	const [formData, setFormData] = React.useState<Movie>(initialState);
 
 	const setField = (field: string, value: string): void =>
 		setFormData({
@@ -43,6 +48,10 @@ export default function PublishComponent(props: any): JSX.Element {
 		);
 
 		window.alert(response.message);
+
+		if (response.success) {
+			setFormData(initialState);
+		}
 	};
 
 	return (
@@ -112,6 +121,23 @@ export default function PublishComponent(props: any): JSX.Element {
 					value={formData.title}
 					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 						setField('title', e.target.value)
+					}
+				/>
+			</section>
+			<section className='uk-margin-bottom'>
+				<label
+					htmlFor='age'
+					className='uk-display-block uk-margin-small-bottom'>
+					Minimum Age
+				</label>
+				<input
+					type='text'
+					className='uk-input'
+					id='age'
+					placeholder='18'
+					value={formData.minAge}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						setField('minAge', e.target.value)
 					}
 				/>
 			</section>

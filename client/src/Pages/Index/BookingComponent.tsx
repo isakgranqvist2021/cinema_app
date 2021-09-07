@@ -16,6 +16,11 @@ export default function BookingComponent(props: any): JSX.Element {
 				header
 				trailer
 			}
+
+			instances(id: "${props.location.state}") {
+				_id
+				date
+			}
 		}
 	`;
 
@@ -25,6 +30,7 @@ export default function BookingComponent(props: any): JSX.Element {
 
 	const embeddCode = data.movie.trailer.split('?v=')[1];
 
+	console.log(data);
 	return (
 		<ContainerComponent>
 			<iframe

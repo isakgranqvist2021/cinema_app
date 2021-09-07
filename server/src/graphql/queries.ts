@@ -1,19 +1,18 @@
 /** @format */
 
-import { findMany, findOne } from '../models/movie';
+import { findMany as findManyMovies, findOne } from '../models/movie';
+import { findMany as findManyInstances } from '../models/instance';
 
 const movie = {
-	one: async (params: any) => {
-		console.log('query ');
-		console.log(params);
-		return await findOne({ _id: params.id });
-	},
-	all: async () => {
-		console.log('find all');
-		return await findMany({});
-	},
+	one: async (params: any) => await findOne({ _id: params.id }),
+	all: async () => await findManyMovies({}),
+};
+
+export const instance = {
+	many: async (params: any) => await findManyInstances({ movie: params.id }),
 };
 
 export default {
 	movie,
+	instance,
 };

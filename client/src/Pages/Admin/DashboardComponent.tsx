@@ -2,11 +2,11 @@
 
 import React from 'react';
 import ContainerComponent from 'Components/ContainerComponent';
-import DatesComponent from '../../Components/DatesComponent';
+import InstanceComponent from '../../Components/InstanceComponent';
 import HeaderComponent from '../../Components/HeaderComponent';
 import PublishComponent from '../../Components/PublishComponent';
 
-const components = [PublishComponent, DatesComponent];
+const components = [PublishComponent, InstanceComponent];
 
 export default function DashboardComponent(): JSX.Element {
 	const [tab, setTab] = React.useState<number>(0);
