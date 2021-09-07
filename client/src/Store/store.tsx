@@ -2,26 +2,29 @@
 
 import { createStore } from 'redux';
 
-interface AuthState {
-	loggedIn: boolean;
-}
-
 interface Action {
 	type: string;
-	payload: AuthState;
+	payload: boolean;
 }
 
-const initialState: AuthState = {
-	loggedIn: false,
-};
-
-function authStore(state: AuthState = initialState, action: Action) {
-	switch (action.type) {
-		case 'set':
-			return (state = action.payload);
-		default:
-			return state;
+export const authStore = createStore(
+	(state: boolean = false, action: Action): boolean => {
+		switch (action.type) {
+			case 'set':
+				return action.payload;
+			default:
+				return state;
+		}
 	}
-}
+);
 
-export default createStore(authStore);
+export const modalStore = createStore(
+	(state: boolean = false, action: Action): boolean => {
+		switch (action.type) {
+			case 'set':
+				return action.payload;
+			default:
+				return state;
+		}
+	}
+);

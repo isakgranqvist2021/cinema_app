@@ -43,7 +43,10 @@ export default function BookingComponent(props: any): JSX.Element {
 
 	const navigate = (e: any, inst: any): void => {
 		const url = ['/', params.title, '/', params.today, '/confirm'].join('');
-		history.push(url, inst);
+		history.push(url, {
+			...inst,
+			...data,
+		});
 	};
 
 	const { loading, error, data } = useQuery(query(props.location.state));
@@ -77,6 +80,7 @@ export default function BookingComponent(props: any): JSX.Element {
 					<tbody>
 						{data.instances.map((inst: any, i: number) => (
 							<tr
+								key={i}
 								className={classes.row}
 								onClick={(e: any) => navigate(e, inst)}>
 								<td>{i + 1}</td>

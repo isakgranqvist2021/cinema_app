@@ -2,8 +2,11 @@
 
 import React from 'react';
 import ContainerComponent from 'Components/ContainerComponent';
+import ModalComponent from '../../Components/ModalComponent';
 import { useHistory } from 'react-router';
 import { confirmStyles as useStyles } from 'Utils/hooks';
+import { modalStore } from 'Store/store';
+import { POST } from 'Utils/http';
 
 interface Instance {
 	bookings: number[];
@@ -18,6 +21,129 @@ interface Seat {
 	seat: number;
 	available: boolean;
 }
+
+interface FormData {
+	seats: number[];
+	name: string;
+	email: string;
+	phone: string;
+}
+
+const Form = (props: any): JSX.Element => {
+	const classes = props.classes;
+	const [formData, setFormData] = React.useState<FormData>({
+		seats: props.seats,
+		name: '',
+		email: '',
+		phone: '',
+	});
+
+	const setField = (field: string, value: string): void => {
+		setFormData({
+			...formData,
+			[field]: value,
+		});
+	};
+
+	const submit = async (): Promise<any> => {
+		console.log(props);
+		const response = await POST(
+			'/api/index/booking/create',
+			JSON.stringify({
+				...formData,
+				instance: props._id,
+				seats: formData.seats.map((s: any) => s.seat),
+			})
+		);
+		console.log(response);
+		window.alert(response.message);
+		if (response.success) {
+			props.history.push('/booking/view/' + response.data._id, null);
+		}
+	};
+
+	React.useEffect(
+		() => setFormData({ ...formData, seats: props.seats }),
+		[props.seats]
+	);
+
+	return (
+		<ModalComponent>
+			<h3 className='uk-heading-small'>{props.movie.title}</h3>
+			<div className='uk-flex uk-margin-medium-bottom'>
+				{formData.seats.map((sobject: any) => (
+					<p key={sobject.seat} className={classes.pill}>
+						{sobject.seat}
+					</p>
+				))}
+			</div>
+
+			<div className='form'>
+				<section className='uk-margin-bottom'>
+					<label
+						htmlFor='name'
+						className='uk-display-block uk-margin-small-bottom'>
+						Full Name
+					</label>
+					<input
+						type='text'
+						className='uk-input'
+						id='name'
+						placeholder='John Doe'
+						value={formData.name}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setField('name', e.target.value)
+						}
+					/>
+				</section>
+				<section className='uk-margin-bottom'>
+					<label
+						htmlFor='email'
+						className='uk-display-block uk-margin-small-bottom'>
+						Email
+					</label>
+					<input
+						type='text'
+						className='uk-input'
+						id='email'
+						placeholder='john_doe@gmail.com'
+						value={formData.email}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setField('email', e.target.value)
+						}
+					/>
+				</section>
+				<section className='uk-margin-bottom'>
+					<label
+						htmlFor='phone'
+						className='uk-display-block uk-margin-small-bottom'>
+						Phone Number
+					</label>
+					<input
+						type='text'
+						className='uk-input'
+						id='phone'
+						placeholder='+45 33 41 71 00'
+						value={formData.phone}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setField('phone', e.target.value)
+						}
+					/>
+				</section>
+
+				<p title='When the movie will start' className='uk-text-right'>
+					{new Date(props.date).toLocaleString()}
+				</p>
+
+				<button
+					className='uk-button uk-button-primary uk-display-block uk-margin-auto-left'
+					onClick={submit}>
+					Confirm My Booking
+				</button>
+			</div>
+		</ModalComponent>
+	);
+};
 
 export default function ConfirmComponent(props: any): JSX.Element {
 	const history = useHistory();
@@ -85,10 +211,21 @@ export default function ConfirmComponent(props: any): JSX.Element {
 					title='Continue'
 					aria-label='Continue'
 					className='uk-button uk-button-primary'
-					disabled={!canContinue()}>
+					disabled={!canContinue()}
+					onClick={() =>
+						modalStore.dispatch({ type: 'set', payload: true })
+					}>
 					Continue
 				</button>
 			</div>
+			<Form
+				{...data}
+				classes={classes}
+				history={history}
+				seats={seats.filter(
+					(seat: any) => seat.selected && seat.available
+				)}
+			/>
 		</ContainerComponent>
 	);
 }

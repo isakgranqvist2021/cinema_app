@@ -2,6 +2,50 @@
 
 import { makeStyles } from '@material-ui/core';
 
+const pill = {
+	margin: 0,
+	backgroundColor: '#3290c9',
+	padding: 15,
+	width: 30,
+	height: 30,
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	color: '#fff',
+	borderRadius: '50%',
+	marginRight: 10,
+};
+
+export const modalStyles = makeStyles(() => {
+	return {
+		backdrop: {
+			position: 'fixed',
+			inset: 0,
+			backgroundColor: '#47474700',
+			pointerEvents: 'none',
+			transition: 'all 300ms ease',
+			'&.open': {
+				backgroundColor: '#47474770',
+				pointerEvents: 'all',
+			},
+		},
+		modal: {
+			minWidth: '50%',
+			minHeight: '50%',
+			backgroundColor: '#fff',
+			pointerEvents: 'none',
+			transform: 'translateY(500px)',
+			transition: 'all 300ms ease',
+			opacity: 0,
+			'&.open': {
+				pointerEvents: 'all',
+				transform: 'translateY(0)',
+				opacity: 1,
+			},
+		},
+	};
+});
+
 export const bookingStyles = makeStyles(() => {
 	return {
 		row: {
@@ -69,5 +113,12 @@ export const confirmStyles = makeStyles(() => {
 			display: 'flex',
 			justifyContent: 'space-between',
 		},
+		pill: pill,
+	};
+});
+
+export const viewBookingStyles = makeStyles(() => {
+	return {
+		pill: pill,
 	};
 });

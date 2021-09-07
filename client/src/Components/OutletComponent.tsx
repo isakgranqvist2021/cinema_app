@@ -3,13 +3,14 @@
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { GET } from 'Utils/http';
-import authReducer from 'Store/store';
+import { authStore } from 'Store/store';
 
 import LoadingComponent from 'Pages/Index/LoadingComponent';
 import ErrorComponent from 'Pages/Index/ErrorComponent';
 import HomeComponent from 'Pages/Index/HomeComponent';
 import BookingComponent from 'Pages/Index/BookingComponent';
 import ConfirmComponent from 'Pages/Index/ConfirmComponent';
+import ViewBookingComponent from 'Pages/Index/ViewBookingComponent';
 
 import LoginComponent from 'Pages/Admin/LoginComponent';
 import DashboardComponent from 'Pages/Admin/DashboardComponent';
@@ -17,11 +18,9 @@ import DashboardComponent from 'Pages/Admin/DashboardComponent';
 const requireLogin = async (to: any, from: any, next: any) => {
 	const response = await GET('/api/admin');
 
-	authReducer.dispatch({
+	authStore.dispatch({
 		type: 'set',
-		payload: {
-			loggedIn: response.success,
-		},
+		payload: response.success,
 	});
 
 	// auth does not matter for the requested route
@@ -63,6 +62,10 @@ const routes: Route[] = [
 	{
 		path: '/:title/:today/confirm',
 		component: ConfirmComponent,
+	},
+	{
+		path: '/booking/view/:id',
+		component: ViewBookingComponent,
 	},
 	{
 		path: '*',

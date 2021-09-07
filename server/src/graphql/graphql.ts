@@ -11,6 +11,7 @@ const schema = buildSchema(`
 		movie(id: String!): Movie
 		movies: [Movie]
 		instances(id: String!): [Instance]
+		booking(id: String!): Booking
     }
 
 	type Movie {
@@ -32,6 +33,7 @@ const schema = buildSchema(`
 		seats: Int
 		minAge: Int
 		date: Date
+		movie: Movie
 		bookings: [Int]
 	}
 
@@ -39,10 +41,11 @@ const schema = buildSchema(`
 		_id: String 
 		createdAt: Date
 		updatedAt: Date
+		seats: [Int]
 		name: String
 		email: String
 		phone: String
-		instance: Instance,
+		instance: Instance
 	}
 `);
 
@@ -50,6 +53,7 @@ const root = {
 	movie: queries.movie.one,
 	movies: queries.movie.all,
 	instances: queries.instance.many,
+	booking: queries.booking.one,
 };
 
 export default graphqlHTTP({

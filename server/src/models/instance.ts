@@ -35,3 +35,11 @@ export const findMany = async (filter: any): Promise<any> => {
 		return Promise.reject(err);
 	}
 };
+
+export const updateOne = async (filter: any, update: any): Promise<any> => {
+	try {
+		return await InstanceModel.updateOne(filter, update);
+	} catch (err) {
+		return Promise.reject(err);
+	}
+};
