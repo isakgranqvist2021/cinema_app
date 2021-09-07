@@ -5,7 +5,9 @@ import { buildSchema } from 'graphql';
 import { graphqlHTTP } from 'express-graphql';
 
 const schema = buildSchema(`
-    type Query {
+	scalar Date
+
+	type Query {
 		movie(id: String!): Movie
 		movies: [Movie]
 		instances(id: String!): [Instance]
@@ -13,8 +15,8 @@ const schema = buildSchema(`
 
 	type Movie {
 		_id: String 
-		createdAt: String
-		updatedAt: String
+		createdAt: Date
+		updatedAt: Date
 		title: String
 		description: String
 		thumbnail: String
@@ -25,21 +27,21 @@ const schema = buildSchema(`
 
 	type Instance {
 		_id: String 
-		createdAt: String
-		updatedAt: String
+		createdAt: Date
+		updatedAt: Date
 		seats: Int
 		minAge: Int
-		date: String
+		date: Date
 		bookings: [Int]
 	}
 
 	type Booking {
 		_id: String 
-		createdAt: String
-		updatedAt: String
+		createdAt: Date
+		updatedAt: Date
 		name: String
 		email: String
-		phone:String,
+		phone: String
 		instance: Instance,
 	}
 `);
