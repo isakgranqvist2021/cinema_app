@@ -2,6 +2,7 @@
 
 import ContainerComponent from 'Components/ContainerComponent';
 import MovieComponent from 'Components/MovieComponent';
+import SlideshowComponent from 'Components/SlideshowComponent';
 import { gql, useQuery } from '@apollo/client';
 
 const query = gql`
@@ -12,6 +13,7 @@ const query = gql`
 			title
 			description
 			minAge
+			header
 		}
 	}
 `;
@@ -24,6 +26,11 @@ export default function HomeComponent(props: any): JSX.Element {
 
 	return (
 		<ContainerComponent>
+			<div className='uk-margin-large-bottom'>
+				<SlideshowComponent
+					images={data.movies.map((m: any) => m.header)}
+				/>
+			</div>
 			<div
 				style={{
 					display: 'grid',
