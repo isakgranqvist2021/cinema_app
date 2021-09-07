@@ -21,7 +21,7 @@ export default function DashboardComponent(): JSX.Element {
 			<HeaderComponent active={tab} setTab={changeTab} />
 
 			{components.map((Component: React.FunctionComponent, i: number) =>
-				tab === i ? <Component /> : null
+				tab === i ? <Component key={i} /> : null
 			)}
 		</ContainerComponent>
 	);

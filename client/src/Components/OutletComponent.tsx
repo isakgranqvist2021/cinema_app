@@ -9,6 +9,7 @@ import LoadingComponent from 'Pages/Index/LoadingComponent';
 import ErrorComponent from 'Pages/Index/ErrorComponent';
 import HomeComponent from 'Pages/Index/HomeComponent';
 import BookingComponent from 'Pages/Index/BookingComponent';
+import ConfirmComponent from 'Pages/Index/ConfirmComponent';
 
 import LoginComponent from 'Pages/Admin/LoginComponent';
 import DashboardComponent from 'Pages/Admin/DashboardComponent';
@@ -58,6 +59,10 @@ const routes: Route[] = [
 	{
 		path: '/:title/:today',
 		component: BookingComponent,
+	},
+	{
+		path: '/:title/:today/confirm',
+		component: ConfirmComponent,
 	},
 	{
 		path: '*',

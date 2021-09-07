@@ -2,17 +2,17 @@
 
 import ContainerComponent from 'Components/ContainerComponent';
 import { gql, useQuery } from '@apollo/client';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import { bookingStyles as useStyles } from 'Utils/hooks';
 
-export default function BookingComponent(props: any): JSX.Element {
-	const history = useHistory();
-	if (!props.location.state) {
-		history.push('/', null);
-	}
+interface Params {
+	title: string;
+	today: string;
+}
 
-	const query = gql`
+const query = (id: string) => gql`
 		query {
-			movie(id: "${props.location.state}") {
+			movie(id: "${id}") {
 				_id
 				createdAt
 				updatedAt
@@ -23,21 +23,35 @@ export default function BookingComponent(props: any): JSX.Element {
 				trailer
 			}
 
-			instances(id: "${props.location.state}") {
+			instances(id: "${id}") {
 				_id
 				date
 				createdAt
+				seats
+				bookings
 			}
 		}
-	`;
+`;
 
-	const { loading, error, data } = useQuery(query);
+export default function BookingComponent(props: any): JSX.Element {
+	const history = useHistory();
+	const params = useParams<Params>();
+	const classes = useStyles();
+	if (!props.location.state) {
+		history.push('/', null);
+	}
+
+	const navigate = (e: any, inst: any): void => {
+		const url = ['/', params.title, '/', params.today, '/confirm'].join('');
+		history.push(url, inst);
+	};
+
+	const { loading, error, data } = useQuery(query(props.location.state));
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error...</p>;
 
 	const embeddCode = data.movie.trailer.split('?v=')[1];
 
-	console.log(data);
 	return (
 		<ContainerComponent>
 			<iframe
@@ -51,16 +65,36 @@ export default function BookingComponent(props: any): JSX.Element {
 			<h1>{data.movie.title}</h1>
 			<p>{data.movie.description}</p>
 
-			<div>
-				{data.instances.map((i: any) => (
-					<div
-						className='uk-card uk-card-default uk-card-body uk-width-1-2@m'
-						key={i._id}>
-						<h3 className='uk-card-title'>{data.movie.title}</h3>
-						<p>{new Date(i.date).toLocaleString()}</p>
-					</div>
-				))}
+			<div className='uk-overflow-auto'>
+				<table className='uk-table uk-table-small uk-table-divider'>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Date</th>
+							<th>Seats Left</th>
+						</tr>
+					</thead>
+					<tbody>
+						{data.instances.map((inst: any, i: number) => (
+							<tr
+								className={classes.row}
+								onClick={(e: any) => navigate(e, inst)}>
+								<td>{i + 1}</td>
+								<td>{new Date(inst.date).toLocaleString()}</td>
+								<td>{inst.seats - inst.bookings.length}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 			</div>
+
+			<button
+				title='Go Back'
+				aria-label='Go Back'
+				className='uk-button uk-button-default uk-margin-medium-top'
+				onClick={() => history.goBack()}>
+				<span uk-icon='chevron-left'></span>
+			</button>
 		</ContainerComponent>
 	);
 }
