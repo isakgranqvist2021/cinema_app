@@ -4,7 +4,7 @@ import React from 'react';
 import AOS from 'aos';
 import { useHistory } from 'react-router';
 import { movieStyles as useStyles } from 'Utils/hooks';
-import { createLinkFrom, addItemRvStorage } from 'Utils/helpers';
+import { createLinkFrom, addItemGateway } from 'Utils/helpers';
 import { rvStore } from 'Store/store';
 
 import 'aos/dist/aos.css';
@@ -13,17 +13,9 @@ export default function MovieComponent(props: any): JSX.Element {
 	const history = useHistory();
 	const classes = useStyles();
 
-	const informant = React.useCallback((title: string, _id: string): void => {
-		addItemRvStorage({ title, _id });
-		rvStore.dispatch({
-			type: 'reload',
-			payload: null,
-		});
-	}, []);
-
 	const navigate = (e: any) => {
 		e.preventDefault();
-		informant(props.title, props._id);
+		addItemGateway(props.title, props._id);
 		history.push(createLinkFrom(props.title), props._id);
 	};
 

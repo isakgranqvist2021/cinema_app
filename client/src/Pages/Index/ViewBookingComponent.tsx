@@ -61,21 +61,26 @@ export default function ViewBookingComponent(props: any): JSX.Element {
 
 				<div className='uk-flex uk-margin-bottom'>
 					{data.booking.seats.map((seat: any) => (
-						<p key={seat} className={classes.pill}>
+						<p
+							key={seat}
+							className={classes.pill}
+							title={`You've booked seat ${seat}`}>
 							{seat}
 						</p>
 					))}
 				</div>
 
 				<ul className='uk-list uk-list-striped'>
-					<li>{data.booking.name}</li>
-					<li>{data.booking.email}</li>
-					<li>{data.booking.phone}</li>
-					<li>
+					<li title='Bookers name'>{data.booking.name}</li>
+					<li title='Bookers email'>{data.booking.email}</li>
+					<li title='Bookers phone'>{data.booking.phone}</li>
+					<li title='Start date'>
 						{new Date(data.booking.instance.date).toLocaleString()}
 					</li>
 					{data.booking.instance.movie.minAge > 0 && (
-						<li>{data.booking.instance.movie.minAge}</li>
+						<li title='Minimum age'>
+							{data.booking.instance.movie.minAge}
+						</li>
 					)}
 				</ul>
 			</div>

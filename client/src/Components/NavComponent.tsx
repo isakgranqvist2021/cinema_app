@@ -3,8 +3,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
-import { createLinkFrom, getRv } from 'Utils/helpers';
+import { createLinkFrom, addItemGateway } from 'Utils/helpers';
 import { RV, rvStore } from 'Store/store';
+import { authStore } from 'Store/store';
 
 const useStyles = makeStyles(() => {
 	return {
@@ -35,10 +36,24 @@ export default function NavComponent(): JSX.Element {
 	const classes = useStyles();
 	const history = useHistory();
 	const [rv, setRv] = React.useState<RV[]>([]);
+	const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
 
-	const navigate = (e: any, to: string): void => {
+	const navigate = (e: any, to: string, payload: RV | null): void => {
 		e.preventDefault();
-		history.push(to, null);
+
+		if (payload !== null) {
+			addItemGateway(payload.title, payload._id);
+			return history.push(to, payload._id);
+		}
+
+		return history.push(to, null);
+	};
+
+	const logout = (e: any): void => {
+		e.preventDefault();
+		localStorage.removeItem('token');
+		history.push('/admin/login', null);
+		window.alert("You've been logged out");
 	};
 
 	React.useEffect(() => {
@@ -47,6 +62,10 @@ export default function NavComponent(): JSX.Element {
 			if (storage !== null) {
 				setRv(JSON.parse(storage).reverse());
 			}
+		});
+
+		authStore.subscribe(() => {
+			setLoggedIn(authStore.getState());
 		});
 
 		return history.listen(() => {
@@ -78,7 +97,7 @@ export default function NavComponent(): JSX.Element {
 					<ul className='uk-nav uk-nav-default tm-nav'>
 						<li className='uk-nav-header'>Navigation</li>{' '}
 						<li className='router-link-exact-active uk-active'>
-							<a href='/' onClick={(e) => navigate(e, '/')}>
+							<a href='/' onClick={(e) => navigate(e, '/', null)}>
 								Hem
 							</a>
 						</li>
@@ -92,6 +111,16 @@ export default function NavComponent(): JSX.Element {
 							<li className='router-link-exact-active uk-active'>
 								{rv.map((rvd: RV, i: number) => (
 									<Link
+										onClick={(e) =>
+											navigate(
+												e,
+												createLinkFrom(rvd.title),
+												{
+													_id: rvd._id,
+													title: rvd.title,
+												}
+											)
+										}
 										key={i}
 										to={createLinkFrom(rvd.title)}>
 										{rvd.title}
@@ -100,6 +129,45 @@ export default function NavComponent(): JSX.Element {
 							</li>
 						</ul>
 					)}
+
+					<ul className='uk-nav uk-nav-default tm-nav uk-margin-top'>
+						<li className='uk-nav-header'>Administration</li>
+						{loggedIn && (
+							<div>
+								<li className='router-link-exact-active uk-active'>
+									<a
+										href='/admin/dashboard'
+										onClick={(e) =>
+											navigate(
+												e,
+												'/admin/dashboard',
+												null
+											)
+										}>
+										Dashboard
+									</a>
+								</li>
+								<li className='router-link-exact-active uk-active'>
+									<a
+										href='/admin/dashboard'
+										onClick={(e) => logout(e)}>
+										Log Out
+									</a>
+								</li>
+							</div>
+						)}
+						{!loggedIn && (
+							<li className='router-link-exact-active uk-active'>
+								<a
+									href='/admin/login'
+									onClick={(e) =>
+										navigate(e, '/admin/login', null)
+									}>
+									Log In
+								</a>
+							</li>
+						)}
+					</ul>
 				</div>
 			</div>
 		</div>

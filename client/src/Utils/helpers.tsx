@@ -1,6 +1,6 @@
 /** @format */
 
-import { RV } from 'Store/store';
+import { RV, rvStore } from 'Store/store';
 
 export const createLinkFrom = (title: string): string => {
 	let t = title;
@@ -34,6 +34,14 @@ export const addItemRvStorage = (rv: RV): any => {
 		items.splice(index, 1);
 		return localStorage.setItem('rv', JSON.stringify([...items, rv]));
 	}
+};
+
+export const addItemGateway = (title: string, _id: string): void => {
+	addItemRvStorage({ title, _id });
+	rvStore.dispatch({
+		type: 'reload',
+		payload: null,
+	});
 };
 
 export const getRv = (): RV[] => {
