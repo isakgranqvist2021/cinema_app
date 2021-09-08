@@ -154,12 +154,15 @@ export const movieStyles = makeStyles(() => {
 
 export const slideShowStyles = makeStyles(() => {
 	return {
+		slide: {
+			height: '50vh',
+		},
 		image: {
 			width: '100%',
-			height: '50vh',
+			height: '100%',
 			backgroundRepeat: 'no-repeat',
-			backgroundSize: '100%',
-			backgroundPosition: 'center',
+			backgroundSize: 'cover',
+			backgroundPosition: 'center center',
 		},
 	};
 });

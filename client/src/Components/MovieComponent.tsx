@@ -1,27 +1,39 @@
 /** @format */
 
+import React from 'react';
+import AOS from 'aos';
 import { useHistory } from 'react-router';
 import { movieStyles as useStyles } from 'Utils/hooks';
+import { createLinkFrom, addItemRvStorage } from 'Utils/helpers';
+import { rvStore } from 'Store/store';
+
+import 'aos/dist/aos.css';
 
 export default function MovieComponent(props: any): JSX.Element {
 	const history = useHistory();
 	const classes = useStyles();
 
-	let t = props.title;
-
-	['-', ' ', '?', ':', '.', '!'].forEach((symbol: string) => {
-		t = t.replaceAll(symbol, '_');
-	});
-
-	const href = ['/', t.toLowerCase(), '/', new Date().valueOf()].join('');
+	const informant = React.useCallback((title: string, _id: string): void => {
+		addItemRvStorage({ title, _id });
+		rvStore.dispatch({
+			type: 'reload',
+			payload: null,
+		});
+	}, []);
 
 	const navigate = (e: any) => {
 		e.preventDefault();
-		history.push(href, props._id);
+		informant(props.title, props._id);
+		history.push(createLinkFrom(props.title), props._id);
 	};
 
+	React.useEffect(() => {
+		AOS.init({
+			duration: 2000,
+		});
+	}, []);
 	return (
-		<div className='uk-card uk-card-default'>
+		<div className='uk-card uk-card-default' data-aos='zoom-in'>
 			<div
 				className={['uk-card-media-top', classes.thumbnail].join(' ')}
 				style={{
@@ -40,7 +52,7 @@ export default function MovieComponent(props: any): JSX.Element {
 
 				<div className={classes.cardActions}>
 					<a
-						href={href}
+						href={createLinkFrom(props.title)}
 						className='uk-button uk-button-primary'
 						onClick={(e: any) => navigate(e)}>
 						Read More

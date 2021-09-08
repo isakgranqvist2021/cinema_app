@@ -16,10 +16,9 @@ export default function SlideshowComponent(props: any): JSX.Element {
 				spaceBetween={10}
 				slidesPerView={1}
 				autoplay={{ delay: 7000 }}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}>
+				onSlideChange={() => console.log('slide change')}>
 				{props.images.map((img: string) => (
-					<SwiperSlide>
+					<SwiperSlide key={img} className={classes.slide}>
 						<div
 							className={classes.image}
 							style={{ backgroundImage: `url(${img})` }}></div>

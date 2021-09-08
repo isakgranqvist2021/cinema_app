@@ -2,9 +2,6 @@
 
 ## en vän har köpt en mindre biosalong och vill låta sina kunder boka stolar för kommande föreställningar
 
--   Applikationen ska vara publik (deployad med Heroku exempelvis).
--   Applikationen ska ha ett animerat galleri för nya filmer
-
 generate cert, key
 
 ```bash

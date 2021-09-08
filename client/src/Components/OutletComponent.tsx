@@ -5,6 +5,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { GET } from 'Utils/http';
 import { authStore } from 'Store/store';
 
+import NavComponent from './NavComponent';
 import LoadingComponent from 'Pages/Index/LoadingComponent';
 import ErrorComponent from 'Pages/Index/ErrorComponent';
 import HomeComponent from 'Pages/Index/HomeComponent';
@@ -76,6 +77,7 @@ const routes: Route[] = [
 export default function OutletComponent(props: any): JSX.Element {
 	return (
 		<BrowserRouter>
+			<NavComponent />
 			<GuardProvider
 				guards={[requireLogin]}
 				loading={LoadingComponent}

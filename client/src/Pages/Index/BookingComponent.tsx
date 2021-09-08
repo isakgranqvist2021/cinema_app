@@ -1,5 +1,6 @@
 /** @format */
 
+import React from 'react';
 import ContainerComponent from 'Components/ContainerComponent';
 import { gql, useQuery } from '@apollo/client';
 import { useHistory, useParams } from 'react-router';
@@ -53,14 +54,15 @@ export default function BookingComponent(props: any): JSX.Element {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error...</p>;
 
-	const embeddCode = data.movie.trailer.split('?v=')[1];
-
 	return (
 		<ContainerComponent>
 			<iframe
 				className='uk-width-100'
 				height='720'
-				src={'https://www.youtube.com/embed/' + embeddCode}
+				src={
+					'https://www.youtube.com/embed/' +
+					data.movie.trailer.split('?v=')[1]
+				}
 				title='YouTube video player'
 				frameBorder='0'
 				allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'

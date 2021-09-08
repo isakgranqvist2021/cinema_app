@@ -2,9 +2,14 @@
 
 import { createStore } from 'redux';
 
+export interface RV {
+	title: string;
+	_id: string;
+}
+
 interface Action {
 	type: string;
-	payload: boolean;
+	payload: any;
 }
 
 export const authStore = createStore(
@@ -27,4 +32,8 @@ export const modalStore = createStore(
 				return state;
 		}
 	}
+);
+
+export const rvStore = createStore(
+	(state: null = null, action: Action) => state
 );
