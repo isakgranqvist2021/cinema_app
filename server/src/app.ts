@@ -15,6 +15,7 @@ import auth from './routers/auth';
 dotenv.config();
 database.connect();
 const app: express.Express = express();
+const PORT: number | string = process.env.PORT || process.env.NODE_PORT;
 
 app.use('/', express.static('./public'));
 app.use(cors());
@@ -30,8 +31,6 @@ app.get('*', (req: Request, res: Response) => {
 	return res.sendFile('index.html', { root: './public' });
 });
 
-app.listen(process.env.NODE_PORT, () =>
-	console.log(
-		`Server listening on ${process.env.NODE_HOST}:${process.env.NODE_PORT}`
-	)
+app.listen(PORT, () =>
+	console.log(`Server listening on ${process.env.NODE_HOST}:${PORT}`)
 );
