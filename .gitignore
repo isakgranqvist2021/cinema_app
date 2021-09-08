@@ -1,6 +1,7 @@
 # client
 /client/node_modules
 /client/build
+/client/public
 
 # server
 /server/node_modules
@@ -11,4 +12,7 @@
 
 # misc 
 /.vscode
+
+
+# remove when production deployment
 /server/public
