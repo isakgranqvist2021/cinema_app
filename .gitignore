@@ -13,3 +13,4 @@
 
 # remove when production deployment
 /server/public
+/client/build

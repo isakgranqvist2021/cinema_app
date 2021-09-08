@@ -5,7 +5,6 @@ import AOS from 'aos';
 import { useHistory } from 'react-router';
 import { movieStyles as useStyles } from 'Utils/hooks';
 import { createLinkFrom, addItemGateway } from 'Utils/helpers';
-import { rvStore } from 'Store/store';
 
 import 'aos/dist/aos.css';
 
@@ -28,9 +27,13 @@ export default function MovieComponent(props: any): JSX.Element {
 		<div className='uk-card uk-card-default' data-aos='zoom-in'>
 			<div
 				className={['uk-card-media-top', classes.thumbnail].join(' ')}
-				style={{
-					backgroundImage: `url(${props.thumbnail})`,
-				}}></div>
+				onClick={(e: any) => navigate(e)}>
+				<div
+					className={classes.image}
+					style={{
+						backgroundImage: `url(${props.thumbnail})`,
+					}}></div>
+			</div>
 			<div className='uk-card-body'>
 				<h3
 					className='uk-card-title uk-text-nowrap uk-overflow-hidden'

@@ -140,14 +140,26 @@ export const movieStyles = makeStyles(() => {
 		thumbnail: {
 			width: '100%',
 			height: 300,
-			backgroundRepeat: 'no-repeat',
-			backgroundSize: 'cover',
-			backgroundPosition: '50% 50%',
 			display: 'block',
 			transition: 'all 200ms ease',
+			overflow: 'hidden',
+			backgroundColor: '#eee',
+			padding: '10px 0',
+			cursor: 'pointer',
 			'&:hover': {
-				backgroundPosition: '-10% 0%',
+				overflow: 'unset',
+				'& $image': {
+					transform: 'scale(1.75)',
+				},
 			},
+		},
+		image: {
+			width: '100%',
+			height: '100%',
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'contain',
+			backgroundPosition: 'center center',
+			transition: 'all 350ms ease',
 		},
 	};
 });

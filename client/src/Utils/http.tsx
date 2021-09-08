@@ -6,7 +6,8 @@ interface HttpConfig {
 	body: any;
 }
 
-export const serverAddr = 'http://localhost:8080';
+export const serverAddr =
+	'https://a172cedcae47474b615c54d510a5d8.herokuapp.com';
 
 const config = (method: string, payload?: string | FormData): HttpConfig => {
 	return Object.assign(
