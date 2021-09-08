@@ -2,11 +2,14 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay } from 'swiper';
+import { slideShowStyles as useStyles } from 'Utils/hooks';
 import 'swiper/swiper-bundle.css';
 
 SwiperCore.use([Autoplay]);
 
 export default function SlideshowComponent(props: any): JSX.Element {
+	const classes = useStyles();
+
 	return (
 		<div>
 			<Swiper
@@ -17,11 +20,9 @@ export default function SlideshowComponent(props: any): JSX.Element {
 				onSwiper={(swiper) => console.log(swiper)}>
 				{props.images.map((img: string) => (
 					<SwiperSlide>
-						<img
-							src={img}
-							alt=''
-							style={{ width: '100%', height: '50vh' }}
-						/>
+						<div
+							className={classes.image}
+							style={{ backgroundImage: `url(${img})` }}></div>
 					</SwiperSlide>
 				))}
 			</Swiper>

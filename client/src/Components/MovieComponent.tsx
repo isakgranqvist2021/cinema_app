@@ -22,13 +22,11 @@ export default function MovieComponent(props: any): JSX.Element {
 
 	return (
 		<div className='uk-card uk-card-default'>
-			<div className='uk-card-media-top'>
-				<img
-					src={props.thumbnail}
-					alt={props.title}
-					style={{ width: '100%', height: 300 }}
-				/>
-			</div>
+			<div
+				className={['uk-card-media-top', classes.thumbnail].join(' ')}
+				style={{
+					backgroundImage: `url(${props.thumbnail})`,
+				}}></div>
 			<div className='uk-card-body'>
 				<h3
 					className='uk-card-title uk-text-nowrap uk-overflow-hidden'

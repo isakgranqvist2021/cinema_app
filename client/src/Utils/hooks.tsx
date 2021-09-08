@@ -137,5 +137,29 @@ export const movieStyles = makeStyles(() => {
 			borderRadius: '50%',
 			color: '#fff',
 		},
+		thumbnail: {
+			width: '100%',
+			height: 300,
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: 'cover',
+			backgroundPosition: '50% 50%',
+			display: 'block',
+			transition: 'all 200ms ease',
+			'&:hover': {
+				backgroundPosition: '-10% 0%',
+			},
+		},
+	};
+});
+
+export const slideShowStyles = makeStyles(() => {
+	return {
+		image: {
+			width: '100%',
+			height: '50vh',
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: '100%',
+			backgroundPosition: 'center',
+		},
 	};
 });
