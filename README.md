@@ -9,13 +9,12 @@
    Alla komponenter ligger i en egen fil. Sidor ligger i /Pages och komponenter ligger i /Components
 
 3. Användning av hooks.
-
-useEffect<br>
-useCallback<br>
-useQuery<br>
-useHistory<br>
-useEffect<br>
-useStyles<br>
+   useEffect<br>
+   useCallback<br>
+   useQuery<br>
+   useHistory<br>
+   useEffect<br>
+   useStyles<br>
 
 4. Vad är du mest nöjd med?
 5. Största lärdomar och vad hade du gjort annorlunda om du fick börja om?
