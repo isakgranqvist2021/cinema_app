@@ -16,7 +16,6 @@ useEffect<br/>
 useCallback<br/>
 useQuery<br/>
 useHistory<br/>
-useEffect<br/>
 useStyles<br/>
 
 ### 4. Vad är du mest nöjd med?<br/>
