@@ -12,12 +12,12 @@
 
 #### har använt följande hooks:
 
-useEffect
-useCallback
-useQuery
-useHistory
-useEffect
-useStyles
+3.1 useEffect<br>
+3.2 useCallback<br>
+3.3 useQuery<br>
+3.4 useHistory<br>
+3.5 useEffect<br>
+3.6 useStyles<br>
 
 4. Vad är du mest nöjd med?
 5. Största lärdomar och vad hade du gjort annorlunda om du fick börja om?
