@@ -2,7 +2,7 @@
 
 ## en vän har köpt en mindre biosalong och vill låta sina kunder boka stolar för kommande föreställningar
 
-1. Demo av app<br/>
+1. <span style="color:#fcba03">Demo av app</span><br/>
    [App URL](https://a172cedcae47474b615c54d510a5d8.herokuapp.com/)
 
 2. Komponentuppdelning<br/>
