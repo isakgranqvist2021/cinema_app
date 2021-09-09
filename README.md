@@ -2,10 +2,10 @@
 
 ## en vän har köpt en mindre biosalong och vill låta sina kunder boka stolar för kommande föreställningar
 
-1. Demo av app
+1. Demo av app<br/>
    [App URL](https://a172cedcae47474b615c54d510a5d8.herokuapp.com/)
 
-2. Komponentuppdelning
+2. Komponentuppdelning<br/>
    Alla komponenter ligger i en egen fil. Sidor ligger i /Pages och komponenter ligger i /Components
 
 3. Användning av hooks.
