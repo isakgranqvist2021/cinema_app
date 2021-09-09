@@ -12,6 +12,7 @@ Komponenter ligger i /Components</br>
 
 ### 3. Användning av hooks.</br>
 
+useState<br/>
 useEffect<br/>
 useCallback<br/>
 useQuery<br/>
