@@ -2,7 +2,8 @@
 
 ## en vän har köpt en mindre biosalong och vill låta sina kunder boka stolar för kommande föreställningar
 
-1. <span style="color:#fcba03">Demo av app</span><br/>
+````diff
+1. ! Demo av app<br/>
    [App URL](https://a172cedcae47474b615c54d510a5d8.herokuapp.com/)
 
 2. Komponentuppdelning<br/>
@@ -24,4 +25,6 @@ generate cert, key
 
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
-```
+````
+
+...
