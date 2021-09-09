@@ -6,7 +6,9 @@
 
 ### 2. Komponentuppdelning<br/>
 
-Alla komponenter ligger i en egen fil. Sidor ligger i /Pages och komponenter ligger i /Components
+Alla komponenter ligger i en egen fil.<br/>
+Sidor ligger i /Pages</br>
+Komponenter ligger i /Components</br>
 
 ### 3. Användning av hooks.</br>
 
