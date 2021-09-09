@@ -17,11 +17,19 @@
    useEffect<br/>
    useStyles<br/>
 
-4. Vad är du mest nöjd med?
-5. Största lärdomar och vad hade du gjort annorlunda om du fick börja om?
+4. Vad är du mest nöjd med?<br/>
 
+I menyn syns vilka filmer man har tittat på.
+
+5. Största lärdomar och vad hade du gjort annorlunda om du fick börja om?<br/>
+
+Största lärdom: GraphQL <br/>
+Gjort annorlunda: Mer fokus på GraphQL<br/>
+
+<!--
 generate cert, key
 
 ```bash
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
 ```
+-->
