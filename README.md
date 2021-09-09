@@ -18,13 +18,11 @@
    useStyles<br/>
 
 4. Vad är du mest nöjd med?<br/>
-
-I menyn syns vilka filmer man har tittat på.
+   I menyn syns vilka filmer man har tittat på.
 
 5. Största lärdomar och vad hade du gjort annorlunda om du fick börja om?<br/>
-
-Största lärdom: GraphQL <br/>
-Gjort annorlunda: Mer fokus på GraphQL<br/>
+   Största lärdom: GraphQL <br/>
+   Gjort annorlunda: Mer fokus på GraphQL<br/>
 
 <!--
 generate cert, key
