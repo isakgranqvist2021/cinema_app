@@ -17,7 +17,7 @@ database.connect();
 const app: express.Express = express();
 const PORT: number | string = process.env.PORT || process.env.NODE_PORT;
 
-app.use('/', express.static('./public'));
+// app.use('/', express.static('./public'));
 app.use(cors());
 app.use(express.json());
 app.use('*', log);

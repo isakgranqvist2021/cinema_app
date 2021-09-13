@@ -1,6 +1,6 @@
 /** @format */
 
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 
 const pill = {
 	margin: 0,
@@ -124,7 +124,7 @@ export const viewBookingStyles = makeStyles(() => {
 	};
 });
 
-export const movieStyles = makeStyles(() => {
+export const movieStyles = makeStyles((theme: Theme) => {
 	return {
 		cardActions: {
 			display: 'flex',

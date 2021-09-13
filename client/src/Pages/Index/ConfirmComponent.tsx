@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import { confirmStyles as useStyles } from 'Utils/hooks';
 import { modalStore } from 'Store/store';
 import { POST } from 'Utils/http';
+import { emailRegex, phoneRegex } from 'Utils/helpers';
 
 interface Instance {
 	bookings: number[];
@@ -37,8 +38,20 @@ const Form = (props: any): JSX.Element => {
 		email: '',
 		phone: '',
 	});
+	const [error, setError] = React.useState({
+		show: false,
+		field: '',
+		message: '',
+	});
 
 	const setField = (field: string, value: string): void => {
+		if (error.show)
+			setError({
+				show: false,
+				field: '',
+				message: '',
+			});
+
 		setFormData({
 			...formData,
 			[field]: value,
@@ -46,19 +59,38 @@ const Form = (props: any): JSX.Element => {
 	};
 
 	const submit = async (): Promise<any> => {
-		console.log(props);
-		const response = await POST(
-			'/api/index/booking/create',
-			JSON.stringify({
-				...formData,
-				instance: props._id,
-				seats: formData.seats.map((s: any) => s.seat),
-			})
-		);
-		console.log(response);
-		window.alert(response.message);
-		if (response.success) {
-			props.history.push('/booking/view/' + response.data._id, null);
+		if (!formData.name || formData.name.length <= 1) {
+			setError({
+				show: true,
+				field: 'name',
+				message: 'please enter your name',
+			});
+		} else if (!emailRegex.test(formData.email)) {
+			setError({
+				show: true,
+				field: 'email',
+				message: 'invalid email',
+			});
+		} else if (!phoneRegex.test(formData.phone)) {
+			setError({
+				show: true,
+				field: 'phone',
+				message: 'invalid phone number',
+			});
+		} else {
+			const response = await POST(
+				'/api/index/booking/create',
+				JSON.stringify({
+					...formData,
+					instance: props._id,
+					seats: formData.seats.map((s: any) => s.seat),
+				})
+			);
+			console.log(response);
+			window.alert(response.message);
+			if (response.success) {
+				props.history.push('/booking/view/' + response.data._id, null);
+			}
 		}
 	};
 
@@ -88,6 +120,12 @@ const Form = (props: any): JSX.Element => {
 					<input
 						type='text'
 						className='uk-input'
+						style={{
+							borderColor:
+								error.field === 'name' && error.show
+									? 'crimson'
+									: '#e5e5e5',
+						}}
 						id='name'
 						placeholder='John Doe'
 						value={formData.name}
@@ -95,6 +133,11 @@ const Form = (props: any): JSX.Element => {
 							setField('name', e.target.value)
 						}
 					/>
+					{error.field === 'name' && error.show && (
+						<p style={{ marginTop: 0, color: 'crimson' }}>
+							{error.message}
+						</p>
+					)}
 				</section>
 				<section className='uk-margin-bottom'>
 					<label
@@ -105,6 +148,12 @@ const Form = (props: any): JSX.Element => {
 					<input
 						type='text'
 						className='uk-input'
+						style={{
+							borderColor:
+								error.field === 'email' && error.show
+									? 'crimson'
+									: '#e5e5e5',
+						}}
 						id='email'
 						placeholder='john_doe@gmail.com'
 						value={formData.email}
@@ -112,6 +161,11 @@ const Form = (props: any): JSX.Element => {
 							setField('email', e.target.value)
 						}
 					/>
+					{error.field === 'email' && error.show && (
+						<p style={{ marginTop: 0, color: 'crimson' }}>
+							{error.message}
+						</p>
+					)}
 				</section>
 				<section className='uk-margin-bottom'>
 					<label
@@ -122,13 +176,24 @@ const Form = (props: any): JSX.Element => {
 					<input
 						type='text'
 						className='uk-input'
+						style={{
+							borderColor:
+								error.field === 'phone' && error.show
+									? 'crimson'
+									: '#e5e5e5',
+						}}
 						id='phone'
-						placeholder='+45 33 41 71 00'
+						placeholder='45 33 41 71 00'
 						value={formData.phone}
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 							setField('phone', e.target.value)
 						}
 					/>
+					{error.field === 'phone' && error.show && (
+						<p style={{ marginTop: 0, color: 'crimson' }}>
+							{error.message}
+						</p>
+					)}
 				</section>
 
 				<p title='When the movie will start' className='uk-text-right'>

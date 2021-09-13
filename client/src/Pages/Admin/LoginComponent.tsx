@@ -17,7 +17,6 @@ const LoginComponent = (props: any): JSX.Element => {
 	});
 
 	const submit = async () => {
-		console.log(formData);
 		const response = await POST(
 			'/api/auth/login',
 			JSON.stringify(formData)
@@ -25,6 +24,7 @@ const LoginComponent = (props: any): JSX.Element => {
 
 		window.alert(response.message);
 		if (response.success) {
+			console.log(response);
 			localStorage.setItem('token', response.data);
 			history.push('/admin/dashboard', null);
 		}

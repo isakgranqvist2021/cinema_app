@@ -23,6 +23,7 @@ export default function MovieComponent(props: any): JSX.Element {
 			duration: 2000,
 		});
 	}, []);
+
 	return (
 		<div className='uk-card uk-card-default' data-aos='zoom-in'>
 			<div
