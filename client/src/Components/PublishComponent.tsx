@@ -1,5 +1,5 @@
 /** @format */
-
+// Det här var en ganska stor komponent som skulle kunnas delas upp lite. En komponent bör inte överstiga 100 rader
 import React from 'react';
 import { POST } from 'Utils/http';
 
@@ -21,7 +21,7 @@ const initialState: Movie = {
 	minAge: '0',
 };
 
-export default function PublishComponent(props: any): JSX.Element {
+export default function PublishComponent(props: any): JSX.Element { // props används inte
 	const [formData, setFormData] = React.useState<Movie>(initialState);
 
 	const setField = (field: string, value: string): void =>

@@ -13,8 +13,9 @@ export const createLinkFrom = (title: string): string => {
 };
 
 export const addItemRvStorage = (rv: RV): any => {
-	let existing = localStorage.getItem('rv');
-
+	let existing = localStorage.getItem('rv'); 
+	
+	// Detta borde ha varit en swich statement
 	if (existing === null)
 		return localStorage.setItem('rv', JSON.stringify([rv]));
 

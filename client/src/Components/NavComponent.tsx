@@ -102,7 +102,10 @@ export default function NavComponent(): JSX.Element {
 							</a>
 						</li>
 					</ul>
-
+{
+	//Den här komponenten är lite för stor tycker jag. Försök att håll dom under 100 rader
+	//Följande kodblock kunde ha fått vara sin egen komponent tycker jag
+}
 					{rv.length > 0 && (
 						<ul className='uk-nav uk-nav-default tm-nav uk-margin-top'>
 							<li className='uk-nav-header'>

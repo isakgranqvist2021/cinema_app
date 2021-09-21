@@ -1,0 +1,7 @@
+Bra jobbat!
+Du är godkänd.
+
+Jag kollar bara på Reactprojektet då det är det enda som ingår i kursen men jag är mycket imponerad av även det övriga arbetet.
+Bra att du använder typescript! 
+Namnen på dina git commits beskriver oftast inte vad commmiten gör tyvärr.
+De behöver du förändra om du vill jobba i större team. Det kommer då också att krävas att du gör fler mindre commits som är enkla att göra ceode review på.
