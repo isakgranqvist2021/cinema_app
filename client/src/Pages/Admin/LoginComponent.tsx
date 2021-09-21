@@ -66,7 +66,7 @@ const LoginComponent = (props: any): JSX.Element => {
 						autoComplete='current-password'
 						id='password'
 						value={formData.password}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => // Mycket proffesionellt att du använder React.ChangeEvent
 							setFormData({
 								...formData,
 								password: e.target.value,
