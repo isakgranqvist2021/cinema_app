@@ -9,6 +9,7 @@ import { modalStore } from 'Store/store';
 import { POST } from 'Utils/http';
 import { emailRegex, phoneRegex } from 'Utils/helpers';
 
+// I den här filen skulle man kunna göra en variabel const NAME = 'name' och använda istället för strängen för att undvika typo error 
 interface Instance {
 	bookings: number[];
 	createdAt: Date;
@@ -133,7 +134,7 @@ const Form = (props: any): JSX.Element => {
 							setField('name', e.target.value)
 						}
 					/>
-					{error.field === 'name' && error.show && (
+					{error.field === 'name' && error.show && ( // Här kan man 
 						<p style={{ marginTop: 0, color: 'crimson' }}>
 							{error.message}
 						</p>
